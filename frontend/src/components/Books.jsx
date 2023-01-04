@@ -14,7 +14,9 @@ export default function Books () {
 }, [])
 console.log(books)
   return (
-   
-    <div> Books list </div>
+    <div> { books.map( book => (
+      <p>{book.title.rendered}</p>
+      ))}
+    </div>
   )
 }
