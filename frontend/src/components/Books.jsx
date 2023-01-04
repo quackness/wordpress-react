@@ -15,7 +15,9 @@ export default function Books () {
 console.log(books)
   return (
     <div> { books.map( book => (
-      <p>{book.title.rendered}</p>
+      <p key = {book.id}>
+      {book.title.rendered}
+      </p>
       ))}
     </div>
   )
