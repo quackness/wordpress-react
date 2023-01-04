@@ -9,8 +9,8 @@ export default function Books () {
     axios.get(`/wp-json/wp/v2/books`)
     .then(function(res) {
       setBooks([...res.data])
+    })
     .catch(err => console.log(err))
-  })
 }, [])
 console.log(books)
   return (
