@@ -1,6 +1,6 @@
 
 import './App.css';
-import Books from './components/books';
+import Books from './components/Books';
 
 function App() {
   return (
