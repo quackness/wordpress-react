@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import BookItem from './BookItem';
+
 
 export default function Books () {
 
@@ -15,9 +17,10 @@ export default function Books () {
 console.log(books)
   return (
     <div> { books.map( book => (
-      <p key = {book.id}>
-      {book.title.rendered}
-      </p>
+      <BookItem key={book.id} book={book}/>
+      // <p key = {book.id}>
+      // {book.title.rendered}
+      // </p>
       ))}
     </div>
   )
