@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
@@ -28,9 +29,10 @@ export default function BookItem (props) {
   return (
     <>
     <small>Review by: <strong>{author}</strong> </small>
+    <Link to={`/book/${book.id}`}> Read review </Link>
     <img src={image}></img>
-   
     <div dangerouslySetInnerHTML={{__html: book.excerpt.rendered}}/> 
+
     </>
   )
 }

@@ -1,13 +1,15 @@
-
-import './App.css';
-import Books from './components/Books';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Books from "./components/Books";
 
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
-      <Books />
-    </div>
+    <Router>
+      <Routes>
+      <Route exact path='/' element={<Books />} />
+      {/* <Route exact path="book/:id" component= */}
+      </Routes> 
+    </Router>
   );
 }
 
