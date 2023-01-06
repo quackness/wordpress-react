@@ -25,13 +25,16 @@ export default function BookItem(props) {
 
   return (
     <>
-      <small>
-        Review by: <strong>{author}</strong>{" "}
-      </small>
-      <Link to={`/book/${book.id}`}> Read review </Link>
-      <hr />
-      <img src={image}></img>
-      <div dangerouslySetInnerHTML={{ __html: book.excerpt.rendered }} />
+      
+        <small>
+          Review by: <strong>{author}</strong>{" "}
+        </small>
+        <Link to={`/book/${book.id}`}> Read review </Link>
+        <hr />
+        <div className="bookBox">
+        <img src={image}></img>
+        <div dangerouslySetInnerHTML={{ __html: book.excerpt.rendered }} />
+      </div>
     </>
   );
 }
