@@ -12,7 +12,7 @@ export default function BookPage(props) {
     // acf: { publisher: "Loading" },
     // content: { rendered: "Loading" },
   });
-  const[loaded, setLoaded] = useState("")
+  const [loaded, setLoaded] = useState("");
 
   // console.log(bookPage.title.rendered)
 
@@ -22,18 +22,18 @@ export default function BookPage(props) {
       .then(function (res) {
         console.log("res", res);
         setBookPage(res.data);
-        setLoaded(true)
+        setLoaded(true);
       })
       .catch((err) => console.log(err));
   }, []);
 
   if (!loaded) {
-    return (<>Loading...</>)
+    return <>Loading...</>;
   }
   return (
     <>
-    <Link to={"/"}> Go back </Link>
-    <hr></hr>
+      <Link to={"/"}> Go back </Link>
+      <hr></hr>
       <h1>{bookPage.title.rendered}</h1>
       <div dangerouslySetInnerHTML={{ __html: bookPage.content.rendered }} />
       <h4>Publisher: {bookPage.acf.publisher}</h4>
