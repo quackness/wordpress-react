@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import DeleteBook from "./DeleteBook";
 
 export default function BookItem(props) {
   const { book } = props;
@@ -34,7 +35,9 @@ export default function BookItem(props) {
         <div className="bookBox">
         <img src={image}></img>
         <div dangerouslySetInnerHTML={{ __html: book.excerpt.rendered }} />
+        
       </div>
+      <DeleteBook />
     </>
   );
 }

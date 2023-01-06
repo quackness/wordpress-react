@@ -1,5 +1,7 @@
-export default function deleteBook () {
+export default function DeleteBook () {
   return (
-    <button type="button" class="btn btn-success">Success</button>
+    <div>
+      <button type="button" class="btn btn-danger">Delete a book</button>
+    </div>
   )
 }
