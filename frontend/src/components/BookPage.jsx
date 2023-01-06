@@ -8,10 +8,11 @@ export default function BookPage(props) {
   const { id } = useParams();
 
   const [bookPage, setBookPage] = useState({
-    title: { rendered: "Loading" },
-    acf: { publisher: "Loading" },
-    content: { rendered: "Loading" },
+    // title: { rendered: "Loading" },
+    // acf: { publisher: "Loading" },
+    // content: { rendered: "Loading" },
   });
+  const[loaded, setLoaded] = useState("")
 
   // console.log(bookPage.title.rendered)
 
@@ -21,14 +22,14 @@ export default function BookPage(props) {
       .then(function (res) {
         console.log("res", res);
         setBookPage(res.data);
-        // setLoaded(true)
+        setLoaded(true)
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // if (!loaded) {
-  //   return (<>loading...</>)
-  // }
+  if (!loaded) {
+    return (<>Loading...</>)
+  }
   return (
     <>
     <Link to={"/"}> Go back </Link>
