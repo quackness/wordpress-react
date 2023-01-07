@@ -1,12 +1,11 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import DeleteBook from "./DeleteBook";
-// import Books from "./Books";
+
 
 export default function BookItem(props) {
   const { book, setBooks, books } = props;
-  // console.log("test", book.featured_media)
+
 
   const [author, setAuthor] = useState([]);
   const [image, setImage] = useState("");
@@ -15,11 +14,9 @@ export default function BookItem(props) {
     headers:{
       "Content-Type": "application/json",
       "Authorization": `Bearer ${process.env.REACT_APP_AUTHORIZATION}`,
-      // "Authorization": process.env.AUTHORIZATION
     }
   };
 
-  console.log(process.env)
 
   function deleteBook(id) {
     console.log("Click")
@@ -37,10 +34,9 @@ export default function BookItem(props) {
       console.log("author res", res.data);
     });
     axios
-      .get(`/wp-json/wp/v2/media/${book.featured_media}`)
+      .get(`/wp-json/wp/v2/media/${book.featured_media}`, config)
       .then(function (res) {
         console.log("media res", res);
-        // console.log(image)
         setImage(res.data.media_details.sizes.large.source_url);
       });
       
@@ -56,7 +52,7 @@ export default function BookItem(props) {
         <div className="bookBox">
         <img src={image}></img>
         <div dangerouslySetInnerHTML={{ __html: book.excerpt.rendered }} />
-        <button type="button" class="btn btn-danger" onClick={()=> deleteBook(book.id)}>Delete a book</button>
+        <button type="button" className="btn btn-danger" onClick={()=> deleteBook(book.id)}>Delete a book</button>
       </div>
     </>
   );
