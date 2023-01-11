@@ -1,9 +1,27 @@
 import {useState} from 'react';
+import axios from 'axios';
 
 export default function AddBook(props) {
   const { books } = props;
 
-  const [imageURL, setImageURL ] = useState([])
+  const [image, setImage ] = useState([])
+
+  const onSubmitForm = function(e){
+    e.preventDefault();
+    // const image = {
+    //   image
+    // };
+    addImage(image);
+  }
+
+  function addImage(image){
+    console.log(image)
+    return axios.post(`http://localhost/wordpress/wp-json/wp/v2/media`, image)
+    .then((response) => {
+      const newImage = response.data
+      setImage(newImage)
+    })
+  }
   
 
   return (
@@ -43,7 +61,7 @@ export default function AddBook(props) {
                   <label for="image" class="form-label">
                     Image
                   </label>
-                  <input type="url" class="form-control" id="image" value={imageURL} onChange={e => e.target.value(setImageURL)}/>
+                  <input type="file" class="form-control" id="file" value={image} onChange={ e => setImage(e.target.value)}/>
                 </div>
               </form>
             </div>
@@ -55,7 +73,7 @@ export default function AddBook(props) {
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-primary" onClick={onSubmitForm}>
                 Save changes
               </button>
             </div>
