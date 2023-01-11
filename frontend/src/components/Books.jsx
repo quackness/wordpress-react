@@ -17,7 +17,7 @@ export default function Books() {
   console.log(books);
   return (
     <div>
-       <AddBook />
+       <AddBook books={books}/>
       {books.map((book) => (
         <BookItem key={book.id} book={book} setBooks={setBooks} books={books}/>
       ))}
