@@ -37,6 +37,7 @@ export default function BookPage(props) {
       <h1>{bookPage.title.rendered}</h1>
       <div dangerouslySetInnerHTML={{ __html: bookPage.content.rendered }} />
       <h4>Publisher: {bookPage.acf.publisher}</h4>
+      {console.log(bookPage.acf.publisher)}
     </>
   );
 }

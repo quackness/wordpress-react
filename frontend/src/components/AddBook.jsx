@@ -10,10 +10,6 @@ export default function AddBook(props) {
   const [image, setImage] = useState([]);
 
 
-
-
-
-
   const headerConfig = {
     headers: {
       Authorization: `Bearer ${process.env.REACT_APP_AUTHORIZATION}`,
@@ -79,14 +75,16 @@ export default function AddBook(props) {
 
   return (
     <>
+    <div className="addBookButton">
       <button
         type="button"
-        className="btn btn-success"
+        className="btn btn-success col-6"
         data-bs-toggle="modal"
         data-bs-target="#addBook"
       >
         Add a book
       </button>
+      </div>
 
       <div
         class="modal fade"
