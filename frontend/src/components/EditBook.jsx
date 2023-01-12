@@ -33,24 +33,13 @@ export default function EditBook(props) {
         console.log("editedBook", editedBook);
         const newElement = [editedBook, ...books];
         setBooks(newElement);
-        // const updatedBooks = [editedBook, ...books];
-        // setBooks(updatedBooks);
-        // const updatedBooks = books.map((book) => {
-        //   if (book.id !== editedBook.id) {
-        //     return book;
-        //   } else {
-        //     return [editedBook, ...books];
-        //   }
-        // });
-        // setBooks(updatedBooks);
         axios
-        .get(`/wp-json/wp/v2/books`)
-        .then(function (res) {
-          setBooks([...res.data]);
-        })
-        .catch((err) => console.log(err));
-    }, []);
-      // });
+          .get(`/wp-json/wp/v2/books`)
+          .then(function (res) {
+            setBooks([...res.data]);
+          })
+          .catch((err) => console.log(err));
+      }, []);
   }
 
   return (
