@@ -19,16 +19,17 @@ export default function EditBook(props) {
   function onSubmitEditForm(e) {
     e.preventDefault();
     console.log(e.currentTarget);
-    const bookData= {
+    const bookData = {
       title: title,
       content: content,
       excerpt: excerpt,
       // featured_media: newImage.id,
-      status: "publish"
+      status: "publish",
     };
-    return axios.post(`/wp-json/wp/v2/books/${book.id}`, bookData, headerConfig)
+    return axios
+      .post(`/wp-json/wp/v2/books/${book.id}`, bookData, headerConfig)
       .then((response) => {
-        const editedBook = response.data
+        const editedBook = response.data;
         const newElement = [editedBook, ...books];
         setBooks(newElement);
       });

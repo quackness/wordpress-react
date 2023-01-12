@@ -59,9 +59,8 @@ export default function BookItem(props) {
           >
             Delete a book
           </button>
-          <EditBook book={book} setBooks={setBooks} books={books}/>
+          <EditBook book={book} setBooks={setBooks} books={books} />
         </div>
-       
       </div>
     </>
   );
