@@ -17,10 +17,11 @@ export default function Books() {
   console.log(books);
   return (
     <div>
-       <AddBook books={books}/>
+        <AddBook books={books} setBooks={setBooks}/>
       {books.map((book) => (
         <BookItem key={book.id} book={book} setBooks={setBooks} books={books}/>
       ))}
+     
     </div>
   );
 }
