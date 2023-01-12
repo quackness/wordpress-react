@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import EditBook from "./EditBook";
 
 export default function BookItem(props) {
   const { book, setBooks, books } = props;
@@ -58,7 +59,9 @@ export default function BookItem(props) {
           >
             Delete a book
           </button>
+          <EditBook book={book} setBooks={setBooks} books={books}/>
         </div>
+       
       </div>
     </>
   );

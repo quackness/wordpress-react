@@ -32,7 +32,7 @@ export default function AddBook(props) {
     console.log(title);
     axios
       .post(
-        `http://localhost/wordpress/wp-json/wp/v2/media`,
+        `/wp-json/wp/v2/media`,
         formData,
         headerConfig
       )
@@ -53,7 +53,7 @@ export default function AddBook(props) {
         };
         return axios
           .post(
-            `http://localhost/wordpress/wp-json/wp/v2/books`,
+            `/wp-json/wp/v2/books`,
             book,
             headerConfig
           )

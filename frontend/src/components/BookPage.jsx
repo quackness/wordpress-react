@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+
 //for the Router to pass params from the link to the component
 
 export default function BookPage(props) {
@@ -38,6 +39,7 @@ export default function BookPage(props) {
       <div dangerouslySetInnerHTML={{ __html: bookPage.content.rendered }} />
       <h4>Publisher: {bookPage.acf.publisher}</h4>
       {console.log(bookPage.acf.publisher)}
+     
     </>
   );
 }
