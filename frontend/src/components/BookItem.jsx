@@ -37,7 +37,7 @@ export default function BookItem(props) {
       .get(`/wp-json/wp/v2/media/${book.featured_media}`, config)
       .then(function (res) {
         console.log("media res", res);
-        setImage(res.data.media_details.sizes.large.source_url);
+        setImage(res.data.source_url);
       });
       
   }, []);
