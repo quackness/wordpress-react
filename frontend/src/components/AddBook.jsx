@@ -4,10 +4,15 @@ import axios from "axios";
 export default function AddBook(props) {
   const { books, setBooks } = props;
 
-  const [title, setTitle] = useState("Hello Worrld");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [image, setImage] = useState([]);
+
+
+
+
+
 
   const headerConfig = {
     headers: {
@@ -59,15 +64,18 @@ export default function AddBook(props) {
           .then((response) => {
             const newBook = response.data;
             console.log("newBook", newBook);
-            const newElement = [ newBook , ...books]
-            setBooks(newElement)
+            const newElement = [newBook, ...books];
+            setBooks(newElement);
             // setBooks((oldState) => {
             //   return oldState.unshift(newBook);
             // });
           });
       });
-  };
+    setTitle("");
+    setContent("");
+    setExcerpt("");
 
+  };
 
   return (
     <>
@@ -90,7 +98,7 @@ export default function AddBook(props) {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" >
                 Add a new book
               </h1>
               <button
@@ -151,8 +159,8 @@ export default function AddBook(props) {
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary">
-                  Save changes
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                  Add a book
                 </button>
               </div>
             </form>
