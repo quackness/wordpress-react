@@ -1,28 +1,73 @@
-import {useState} from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 export default function AddBook(props) {
-  const { books } = props;
+  const { books, setBooks } = props;
 
-  const [image, setImage ] = useState([])
+  const [title, setTitle] = useState("Hello Worrld");
+  const [content, setContent] = useState("");
+  const [excerpt, setExcerpt] = useState("");
+  const [image, setImage] = useState([]);
 
-  const onSubmitForm = function(e){
+  const headerConfig = {
+    headers: {
+      Authorization: `Bearer ${process.env.REACT_APP_AUTHORIZATION}`,
+    },
+  };
+
+  console.log("image", image);
+
+  const onSubmitForm = function (e) {
     e.preventDefault();
-    // const image = {
-    //   image
-    // };
-    addImage(image);
-  }
+    console.log(e.currentTarget);
+    const file = e.currentTarget["file"].files[0];
+    console.log("file", file);
 
-  function addImage(image){
-    console.log(image)
-    return axios.post(`http://localhost/wordpress/wp-json/wp/v2/media`, image)
-    .then((response) => {
-      const newImage = response.data
-      setImage(newImage)
-    })
-  }
-  
+    const formData = new FormData();
+    formData.append("file", file);
+    console.log("formData", formData);
+
+    console.log(image);
+    console.log(title);
+    axios
+      .post(
+        `http://localhost/wordpress/wp-json/wp/v2/media`,
+        formData,
+        headerConfig
+      )
+      .then((response) => {
+        const newImage = response.data;
+        console.log("newImage", newImage);
+        //setImage(newImage.id)
+        //updatte book data with image id
+        //post ot server book data
+        //handle response from adding book
+
+        const book = {
+          title,
+          content,
+          excerpt,
+          featured_media: newImage.id,
+          status: "publish",
+        };
+        return axios
+          .post(
+            `http://localhost/wordpress/wp-json/wp/v2/books`,
+            book,
+            headerConfig
+          )
+          .then((response) => {
+            const newBook = response.data;
+            console.log("newBook", newBook);
+            const newElement = [ newBook , ...books]
+            setBooks(newElement)
+            // setBooks((oldState) => {
+            //   return oldState.unshift(newBook);
+            // });
+          });
+      });
+  };
+
 
   return (
     <>
@@ -55,28 +100,62 @@ export default function AddBook(props) {
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <form>
+            <form onSubmit={onSubmitForm}>
+              <div class="modal-body">
                 <div class="mb-3">
+                  <label for="title" class="form-label">
+                    Title
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+
+                  <label for="content" class="form-label">
+                    Content
+                  </label>
+
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="content"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                  />
+
+                  <label for="excerpt" class="form-label">
+                    Excerpt
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="excerpt"
+                    value={excerpt}
+                    onChange={(e) => setExcerpt(e.target.value)}
+                  />
+
                   <label for="image" class="form-label">
                     Image
                   </label>
-                  <input type="file" class="form-control" id="file" value={image} onChange={ e => setImage(e.target.value)}/>
+                  <input type="file" class="form-control" id="file" />
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary" onClick={onSubmitForm}>
-                Save changes
-              </button>
-            </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
